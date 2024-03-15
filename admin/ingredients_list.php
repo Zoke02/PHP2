@@ -1,11 +1,12 @@
 <?php
 include "functions.php";
+is_loggedin();
 include "head.php";
 ?>
 <main>
     <h2>Ingredients</h2>
     <?php
-    $result = mysqli_query($db, "SELECT * FROM ingredients");
+    $result = mysqli_query($db, "SELECT * FROM zutaten");
 
     // print_r($result);
     echo "<table border='1'>";
@@ -20,9 +21,9 @@ include "head.php";
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tbody>";
             echo "<tr>";
-                echo "<td>" . $row["TITLE"] . "</td>";
-                echo "<td>" . $row["AMMOUNT"] . "</td>";
-                echo "<td>" . $row["CONTENT"] . "</td>";
+                echo "<td>" . $row["titel"] . "</td>";
+                echo "<td>" . $row["menge"] . "</td>";
+                echo "<td>" . $row["einheit"] . "</td>";
                 echo "<td>" . $row["kcal_pro_100"] . "</td>";
             echo "</tr>";
         echo "</tbody>";

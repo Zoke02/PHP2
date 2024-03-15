@@ -1,5 +1,7 @@
 <?php
 include "functions.php";
+is_loggedin();
+// unset($_SESSION["eingeloggt"]);
 include "head.php";
 ?>
 
