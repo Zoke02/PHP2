@@ -7,6 +7,16 @@ $db = mysqli_connect("localhost", "root", "", "php2");
 // Tell MySQL that our commands come as UTF8
 mysqli_set_charset($db, "utf8");
 
+
+// Funktion für mysql_query
+
+function query($sql_befehl) {
+    global $db;
+    $result = mysqli_query($db, $sql_befehl);
+    return $result;
+}
+
+
 // Functions
 
 function escape($text) {

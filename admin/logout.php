@@ -17,7 +17,7 @@ session_destroy();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logged out from Recepie-Admin</title>
 </head>
-<body>
+<body style="font-family:system-ui;background:lightseagreen;color:white">
     <h1>Logged out from Recepie-Admin</h1>
     <P>You are logged out</P>
     <p><a href="login.php">Hier gehts zurück zum Login.</a></p>

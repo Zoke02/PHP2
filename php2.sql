@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2024 at 08:22 PM
+-- Generation Time: Mar 16, 2024 at 03:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,8 +41,8 @@ CREATE TABLE `benutzer` (
 --
 
 INSERT INTO `benutzer` (`id`, `benutzername`, `email`, `passwort`, `anzahl_login`, `last_login`) VALUES
-(1, 'herbert', NULL, '$2y$10$X3fcTRXus/r8DOoEQ61ZE.KPk.Qgp7LtWvsgJy7pg/VZ/uyO0ztNu', 19, '2024-03-15 19:47:41'),
-(3, 'gustav', 'gustav@wifi.de', '$2y$10$1md/7zmz6y7vZkNUc2MJx.tzH9w68ExrL7xLF6DAimVVwTMEq7mMS', 1, '2024-03-15 19:05:01'),
+(1, 'herbert', NULL, '$2y$10$X3fcTRXus/r8DOoEQ61ZE.KPk.Qgp7LtWvsgJy7pg/VZ/uyO0ztNu', 25, '2024-03-16 15:16:53'),
+(3, 'gustav', 'gustav@wifi.de', '$2y$10$1md/7zmz6y7vZkNUc2MJx.tzH9w68ExrL7xLF6DAimVVwTMEq7mMS', 2, '2024-03-16 14:21:25'),
 (4, 'christian', 'herbst@gmx.at', '$2y$10$1md/7zmz6y7vZkNUc2MJx.tzH9w68ExrL7xLF6DAimVVwTMEq7mMS', 0, NULL),
 (5, 'herbst', 'herbst@wifi.at', '$2y$10$X3fcTRXus/r8DOoEQ61ZE.KPk.Qgp7LtWvsgJy7pg/VZ/uyO0ztNu', 0, NULL);
 
@@ -86,7 +86,7 @@ CREATE TABLE `zutaten` (
 --
 
 INSERT INTO `zutaten` (`id`, `titel`, `menge`, `einheit`, `kcal_pro_100`) VALUES
-(1, 'Zwiebel', 1, 'Stk', 100),
+(1, 'Zwiebel', 4, 'Stk', 30),
 (2, 'Mehl', 100, 'Gramm', 10),
 (3, 'Eier', 1, 'Stk', 250);
 
@@ -164,7 +164,7 @@ ALTER TABLE `rezepte`
 -- AUTO_INCREMENT for table `zutaten`
 --
 ALTER TABLE `zutaten`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `zutaten_zu_rezepte`

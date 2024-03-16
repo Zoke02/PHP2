@@ -10,8 +10,12 @@ if (!empty($_POST)) {
         //
         // $sql_benutzername = mysqli_real_escape_string($db, $_POST["benutzername"]);
         $sql_benutzername = escape($_POST["benutzername"]);
+
         // Get all usernames
-        $result = mysqli_query($db, "SELECT * FROM benutzer WHERE benutzername = '{$sql_benutzername}'");
+        // $result = mysqli_query($db, "SELECT * FROM benutzer WHERE benutzername = '{$sql_benutzername}'");
+        $result = query("SELECT * FROM benutzer WHERE benutzername = '{$sql_benutzername}'");
+
+
         // print_r($result);
         // Make a associative array from $results
         $row = mysqli_fetch_assoc($result);
@@ -24,7 +28,9 @@ if (!empty($_POST)) {
                 $_SESSION["benutzername"] = $row["benutzername"];
                 
                 // Anzahl Logins in DB speichern
-                mysqli_query($db, "UPDATE benutzer SET anzahl_login = anzahl_login + 1, last_login = NOW() WHERE id = {$row["id"]}");
+                // query is mz own function!
+                query("UPDATE benutzer SET anzahl_login = anzahl_login + 1, last_login = NOW() WHERE id = {$row["id"]}");
+                // mysqli_query($db, "UPDATE benutzer SET anzahl_login = anzahl_login + 1, last_login = NOW() WHERE id = {$row["id"]}");
                 // mysqli_query($db, "UPDATE benutzer SET last_login = NOW() WHERE id = {$row["id"]}");
 
                 // Go to main Page
@@ -54,7 +60,7 @@ if (!empty($_POST)) {
     <title>Login</title>
 
 </head>
-<body>
+<body style="font-family:system-ui;background:lightseagreen;color:white">
     <h1 style="text-align:center">Login</h1>
 
     <?php
