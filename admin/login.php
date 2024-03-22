@@ -26,6 +26,7 @@ if (!empty($_POST)) {
                 // echo "ist eingeloggt";
                 $_SESSION["eingeloggt"] = true;
                 $_SESSION["benutzername"] = $row["benutzername"];
+                $_SESSION["benutzer_id"] = $row["id"];
                 
                 // Anzahl Logins in DB speichern
                 // query is mz own function!

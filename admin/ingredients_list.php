@@ -5,10 +5,10 @@ include "head.php";
 ?>
 <main>
     <h2>Ingredients</h2>
-    <li style="font-weight:bold;font-size:1rem"><a style="text-decoration:none;color:white" href="ingredients_new.php">Add new ingredient</a></li>
+    <li style="font-weight:bold;font-size:1rem"><a style="text-decoration:none;color:white" href="ingredients_new.php">Add new ingredients</a></li>
     <?php
     // $result = mysqli_query($db, "SELECT * FROM zutaten");
-    $result = query("SELECT * FROM zutaten");
+    $result = query("SELECT * FROM zutaten ORDER BY titel ASC");
     echo "<br>";
     // print_r($result);
     echo "<table border='1'>";
@@ -29,7 +29,7 @@ include "head.php";
                 echo "<td>" . $row["einheit"] . "</td>";
                 echo "<td>" . $row["kcal_pro_100"] . "</td>";
                 echo "<td>" 
-                . "<a href='zutaten_change.php?id={$row["id"]}'>Change</a> "
+                . "<a href='ingredients_change.php?id={$row["id"]}'>Change</a> "
                 . "- <a href='ingredients_delete.php?id={$row["id"]}'>Erase</a>" 
                 . "</td>";
             echo "</tr>";

@@ -78,7 +78,7 @@ include "head.php";
         <li style='font-size:1rem'>Back to List of Ingredients</li>
         </ul></a>";
         echo "</h1>";
-    } 
+    }
     ?>
     <form action="ingredients_new.php?" method="post">
         <div>
@@ -100,5 +100,6 @@ include "head.php";
         <button type="submit">Submit</button>
     </form>
 <?php 
+
 include "footer.php";
 ?>

@@ -45,7 +45,6 @@ if (!empty($_POST)) {
         ");
         $erfolgt = true;
     }
-
 }
 
 include "head.php";
@@ -76,7 +75,7 @@ include "head.php";
 ?>
 <a href=""></a>
 <h4>Change ingredient</h4>
-<form action="zutaten_change.php?id=<?php echo $row["id"] ?>" method="post">
+<form action="ingredients_change.php?id=<?php echo $row["id"] ?>" method="post">
     <div>
         <label for="titel">Ingredient:</label>
         <input type="text" name="titel" id="titel" value="<?php 

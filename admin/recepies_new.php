@@ -3,7 +3,6 @@ include "functions.php";
 is_loggedin();
 $erfolgt = false;
 $errors = array();
-// $sql_id = escape($_GET["id"]);
 // Check if the formular was filled
 if (!empty($_POST)) {
 
@@ -13,20 +12,23 @@ if (!empty($_POST)) {
 
     if (empty($sql_titel)) {
         $errors[] = "Please enter a name for your recepie";
+    } else {
+        //$result = mysqli_query($db, "SELECT * FROM zutaten WHERE titel = '{$sql_titel}'");
+        $result = query("SELECT * FROM rezepte WHERE titel = '{$sql_titel}'");
+
+        $row = mysqli_fetch_assoc($result);
+        if ($row) {
+            $errors[] = "This recepies already exists";
+        }
     }
     // If no errors save the ingredient in databanking
     if(empty($errors)) {
-        query("UPDATE rezepte SET 
+        query("INSERT INTO rezepte SET 
         titel = '{$sql_titel}',
         beschreibung = '{$sql_beschreibung}', 
         benutzer_id = '{$sql_benutzer_id}'
-        WHERE id = '{$sql_id}'
         ");
-
-        // Alle ZUtaten-Zuordnung löschen und neu anlegen
-        query("DELETE FROM zutaten_zu_rezepte WHERE rezpte_id = '{$sql_id}'");
-
-
+        $neue_rezept_id = mysqli_insert_id($db); // ..gibt zurück welche ID zuletzt vergeben wurde
 
         foreach ($_POST["zutaten_id"] as $zutatNr ) {
             // Zuordnung zu Zutaten anlagen
@@ -53,7 +55,7 @@ if (!empty($_POST)) {
 
 include "head.php";
 ?>
-    <h1>Change Recepie</h1>
+    <h1>Add new ingredient</h1>
     <?php 
     if (!empty($errors)) {
         echo "<ul>";
@@ -71,12 +73,8 @@ include "head.php";
         </ul></a>";
         echo "</h1>";
     }
-    $sql_id = escape($_GET["id"]);
-    $result = query("SELECT * FROM rezepte WHERE id = '{$sql_id}'");
-    $row = mysqli_fetch_assoc($result);
-
     ?>
-    <form action="recepies_change.php?id=<?php echo $row["id"]?>" method="post">
+    <form action="recepies_new.php?" method="post">
         <div>
             <label for="benutzer_id">User</label>
             <select name="benutzer_id" id="benutzer_id">
@@ -103,10 +101,7 @@ include "head.php";
             <input type="text" name="titel" id="titel" 
             <?php if (!empty($_POST["titel"]) && !$erfolgt) {
                 echo htmlspecialchars($_POST["titel"]);
-            } else {
-                echo htmlspecialchars($row["titel"]);
-            }
-            ?> />
+            }?> />
         </div>
         <div>
             <label for="beschreibung">Beschreibung</label>
@@ -114,16 +109,7 @@ include "head.php";
         </div>
         <div class="ingredientslist">
             <?php 
-            // Ermitteln, wieviele Zutaten-blöcke wir benotigen
-            // (zum Vorausfüllen)
             $bloecke = 1;
-            $result = query("SELECT * FROM zutaten_zu_rezepte WHERE rezepte_id = '{$sql_id}' ORDER BY id ASC");
-            $bloecke = mysqli_num_rows($result);
-            $zutaten_zuordnung = array();
-            while ($zuordnung = mysqli_fetch_assoc($result)) {
-                $zutaten_zuordnung[] = $zuordnung;
-            }
-            if($bloecke < 1 ) $bloecke = 1;
             for ($i=0; $i < $bloecke ; $i++) { 
             ?>
             <div class="ingredientsblock">
@@ -134,10 +120,6 @@ include "head.php";
                         $ingredients_result = query("SELECT * FROM zutaten ORDER BY titel ASC");
                         while ($ingredient = mysqli_fetch_assoc($ingredients_result)) {
                             echo "<option value='{$ingredient["id"]}'";
-                            if ( (empty($_POST["zutaten_id"]) || $erfolgt)  && !empty($zutaten_zuordnung[$i])
-                            && $zutaten_zuordnung[$i]["zutaten_id"] == $ingredient["id"])  {
-                                echo " selected";
-                            }
                             echo ">{$ingredient["titel"]}</option>";
                         }
                         ?>
@@ -151,7 +133,7 @@ include "head.php";
         <!-- <a class="ingredient-new" href="#" onclick="newIngredient()" >New ingredient</a> -->
         <button class="ingredient-new2">New ingredient</button>
         <div>
-            <button type="submit">Change recepie</button>
+            <button type="submit">Add new recepie</button>
         </div>
     </form>
 <?php 

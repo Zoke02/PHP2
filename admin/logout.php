@@ -1,10 +1,10 @@
 <?php 
 session_start();
 // Chance in array if logged in or not
-// unset($_SESSION["eingeloggt"]);
+unset($_SESSION["eingeloggt"]);
 
 // Unset the session 
-// session_unset();
+session_unset();
 
 // I think this also clears cookies (Vernichtet die Session samt Cookies)
 session_destroy();

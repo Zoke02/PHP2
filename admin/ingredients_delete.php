@@ -34,6 +34,9 @@ if (!empty($_GET["doit"])) {
             </ul></a>";
     } else if ($ist_mit_rezepte_verknüpft) {
         echo "U cant delete " . htmlspecialchars($row["titel"])  . " because a recepie uses that ingredient";
+        echo "<a href='ingredients_list.php'><ul>
+        <li style='font-size:1rem'>Back to List of Ingredients</li>
+        </ul></a>";
     }
     else {
         echo "<p>Are you sure u want to delete the ingredient ". htmlspecialchars($row["titel"]) . "?</p>";
