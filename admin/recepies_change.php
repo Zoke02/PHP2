@@ -3,6 +3,7 @@ include "functions.php";
 is_loggedin();
 $erfolgt = false;
 $errors = array();
+
 // $sql_id = escape($_GET["id"]);
 // Check if the formular was filled
 if (!empty($_POST)) {
@@ -24,9 +25,9 @@ if (!empty($_POST)) {
         ");
 
         // Alle ZUtaten-Zuordnung löschen und neu anlegen
-        query("DELETE FROM zutaten_zu_rezepte WHERE rezpte_id = '{$sql_id}'");
+        query("DELETE FROM zutaten_zu_rezepte WHERE rezepte_id = '{$sql_id}'");
 
-
+        $neue_rezept_id =  mysqli_insert_id($db);
 
         foreach ($_POST["zutaten_id"] as $zutatNr ) {
             // Zuordnung zu Zutaten anlagen

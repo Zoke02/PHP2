@@ -48,8 +48,8 @@ if (! empty($_POST)){
                             WHERE id = {$row["id"]}");
 */
                 query("UPDATE benutzer SET
-                    anzahl_logins = anzahl_logins + 1
-                    , letztes_login = NOW()
+                    anzahl_login = anzahl_login + 1
+                    , last_login = NOW()
                     WHERE id = {$row["id"]}");
 
 

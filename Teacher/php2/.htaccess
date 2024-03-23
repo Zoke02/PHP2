@@ -1,0 +1,5 @@
+RewriteEngine On
+
+RewriteBase /PHP2/Teacher/php2/
+
+RewriteRule ^\/?api\/? api.php

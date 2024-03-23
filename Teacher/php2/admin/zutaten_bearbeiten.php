@@ -86,7 +86,9 @@ include "kopf.php";
     $result = query("SELECT * FROM zutaten WHERE id = '{$sql_id}'");
     $row = mysqli_fetch_assoc($result);
 
-    ?><form action="zutaten_bearbeiten.php?id=<?php echo $row["id"]?>" method="post">
+    ?>
+    
+    <form action="zutaten_bearbeiten.php?id=<?php echo $row["id"]?>" method="post">
         <div>
             <label for="titel">Zutat:</label>
             <input type="text" name="titel" id="titel" value="<?php 
